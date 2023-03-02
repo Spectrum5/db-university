@@ -61,7 +61,12 @@ WHERE `departments`.`name` = 'Dipartimento di Matematica';
 
 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 superare ciascuno dei suoi esami
-
+SELECT CONCAT(student.name,' ', student.surname) AS `Studente`, course.name AS `Corso`, COUNT(*) AS `Tentativi`
+FROM students AS `student`
+INNER JOIN exam_student AS `xs` ON student.id = xs.student_id
+INNER JOIN exams AS `x` ON xs.exam_id = x.id 
+INNER JOIN courses AS `course` ON x.course_id = course.id 
+GROUP BY student.id, course.id;
 
 
 *******************************************************************************
